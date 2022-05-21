@@ -14,8 +14,8 @@ export class SonosService {
     }
 
     // Do not run when television is playing on the speaker
-    if (!crntTrack.uri.startsWith(`x-sonos-htastream`)) {
-      await officeSonos.setVolume(40);
+    if (crntTrack == null || crntTrack.uri == null || !crntTrack.uri.startsWith(`x-sonos-htastream`)) {
+      await officeSonos.setVolume(60);
       await officeSonos.play(`http://${ip}:${port}/clips/doorbell.mp3`);
       if (debug) {
         console.log(`${device.Name}: Rang doorbell`);
